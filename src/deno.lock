@@ -1,0 +1,26 @@
+{
+  "version": "4",
+  "specifiers": {
+    "npm:@tanstack/react-query@^5.76.2": "5.76.2_react@19.1.0"
+  },
+  "npm": {
+    "@tanstack/query-core@5.76.2": {
+      "integrity": "sha512-PFGwWh5ss9cJQ67l6bZ7hqXbisX2gy13G2jP+VGY1bgdbCfOMWh6UBVnN62QbFXro6CCoX9hYzTnZHr6Rz00YQ=="
+    },
+    "@tanstack/react-query@5.76.2_react@19.1.0": {
+      "integrity": "sha512-rGkWberCrFdIxMdvSAJM/UOKeu0O/JVTbMmfhQoJpiU9Uq0EDx2EMCadnNuJWbXR4smDA2t7DY3NKkYFmDVS5A==",
+      "dependencies": [
+        "@tanstack/query-core",
+        "react"
+      ]
+    },
+    "react@19.1.0": {
+      "integrity": "sha512-FS+XFBNvn3GTAWq26joslQgWNoFu08F4kl0J4CgdNKADkdSGXQyTCnKteIAJy96Br6YbpEU1LSzV5dYtjMkMDg=="
+    }
+  },
+  "workspace": {
+    "dependencies": [
+      "npm:@tanstack/react-query@^5.76.2"
+    ]
+  }
+}
