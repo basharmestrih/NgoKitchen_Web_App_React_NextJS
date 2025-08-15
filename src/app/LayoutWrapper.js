@@ -3,7 +3,7 @@
 
 import { usePathname } from "next/navigation";
 import Header from "./components/Header/Header.js";
-
+import Footer from "./components/footer/page.js";
 export default function LayoutWrapper({ children }) {
   const pathname = usePathname();
 
@@ -13,6 +13,7 @@ export default function LayoutWrapper({ children }) {
     <>
       {!isAuthPage && <Header />}
       {children}
+      <Footer/>
     </>
   );
 }

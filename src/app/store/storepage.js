@@ -52,6 +52,15 @@ const {
   } = useFilteredItems(items); 
   return (
     <div className="min-h-screen bg-gray-100">
+             <Appa
+        isOpen={showCartModal}
+        deletecart={removeFromCart}
+  cart={cart}
+  total={total}
+  addToCart={addToCart}
+        onClose={() => setShowCartModal(false)}
+      />
+
       
  
       <WelcomeMessage />

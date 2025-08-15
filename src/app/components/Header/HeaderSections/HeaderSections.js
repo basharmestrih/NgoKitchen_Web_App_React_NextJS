@@ -130,7 +130,8 @@ const HeaderSections = () => (
     <Dropdown>
       <div className="relative group">
         <NavbarItem>
-          <DropdownTrigger>
+          <DropdownTrigger  onClick={() => window.location.href = '/contactus'}>
+
             <Button
               disableRipple
               className="font-bold px-3 py-2 rounded-md hover:bg-blue-500 hover:text-white transition-colors"
