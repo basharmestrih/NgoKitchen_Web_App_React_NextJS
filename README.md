@@ -9,6 +9,7 @@ View Live Demo:
 https://ngo-kitchen.vercel.app/home
 
 The Tech Stack
+
 Frontend: React.js & Next.js (App Router) for SEO optimization and fast page loads.
 
 State Management: Redux Toolkit for consistent data handling across orders and user sessions.
@@ -20,6 +21,7 @@ Auth: NextAuth.js for secure, frictionless email-based login.
 Database: MongoDB (Planned) for flexible, scalable storage of campaigns and orders.
 
 Strategic Decisions
+
 Why Next.js? To provide a seamless, app-like experience while maintaining top-tier SEO for global visibility.
 
 Why Redux? To manage the complex state of a global cart, user authentication, and real-time campaign updates without performance lags.
@@ -36,6 +38,7 @@ Modular Component Design: Built a library of reusable UI elements, ensuring the 
 Streamlined Logic: Developed a custom scheduling and checkout flow specifically designed for the unique needs of NGO event planning.
 
 Core Features
+
 Global Bulk Ordering: A scalable system for NGOs to coordinate large-scale meal deliveries across different countries.
 
 Campaign Hub: Integrated tools for users to create charity posts, share updates, and collect donations.
