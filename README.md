@@ -3,8 +3,11 @@ NGO Kitchen | Full-Stack Charity & Food Ordering Platform
 NGO Kitchen is a high-performance web ecosystem built to bridge the gap between humanitarian aid and organized food logistics. It streamlines bulk meal ordering for global charity events while fostering a community-driven donation space.
 
 [View Case Study on Behance
-]([url](https://www.behance.net/gallery/226771835/Ngo-Kitchen-(ReactNextJS)))[View Live Demo
-]([url](https://ngo-kitchen.vercel.app/home))
+]([url](https://www.behance.net/gallery/226771835/Ngo-Kitchen-(ReactNextJS)))
+
+[View Live Demo
+]((https://ngo-kitchen.vercel.app/home)
+
 The Tech Stack
 Frontend: React.js & Next.js (App Router) for SEO optimization and fast page loads.
 
