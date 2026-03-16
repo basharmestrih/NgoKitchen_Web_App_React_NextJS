@@ -2,11 +2,7 @@ NGO Kitchen | Full-Stack Charity & Food Ordering Platform
 
 NGO Kitchen is a high-performance web ecosystem built to bridge the gap between humanitarian aid and organized food logistics. It streamlines bulk meal ordering for global charity events while fostering a community-driven donation space.
 
-View Case Study on Behance:
-https://www.behance.net/gallery/226771835/Ngo-Kitchen-(ReactNextJS)
-
-View Live Demo:
-https://ngo-kitchen.vercel.app/home
+View Live Demo  View Case Study on Behance
 
 The Tech Stack
 
@@ -29,11 +25,12 @@ Why Redux? To manage the complex state of a global cart, user authentication, an
 Why Tailwind + MUI? To balance rapid custom styling with the reliability of battle-tested, accessible UI components.
 
 Key Engineering Highlights
+
 Hybrid Architecture: Successfully merged a complex e-commerce engine (bulk ordering) with a social platform (campaigns and posts) into one unified codebase.
 
 Performance First: Leveraged Server-Side Rendering (SSR) to ensure the platform remains fast and accessible for users in low-bandwidth regions.
 
-Modular Component Design: Built a library of reusable UI elements, ensuring the interface remains consistent and easy to scale as new features are added.
+Modular Component Design: Built a library of reusable UI elements, ensuring the interface remains consistent and easy to scale.
 
 Streamlined Logic: Developed a custom scheduling and checkout flow specifically designed for the unique needs of NGO event planning.
 
@@ -43,7 +40,6 @@ Global Bulk Ordering: A scalable system for NGOs to coordinate large-scale meal 
 
 Campaign Hub: Integrated tools for users to create charity posts, share updates, and collect donations.
 
-Customizable Logistics: Flexible meal packaging options that allow users to adjust quantities and dietary preferences based on event size.
+Customizable Logistics: Flexible meal packaging options that allow users to adjust quantities and dietary preferences.
 
-Social Engagement: A community module where supporters can interact, promote causes, and track the impact of their donations.
-
+Social Engagement: A community module where supporters can interact, promote causes, and track impact.
