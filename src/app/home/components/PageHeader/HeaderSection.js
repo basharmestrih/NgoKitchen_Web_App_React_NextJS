@@ -19,8 +19,8 @@ export default function HeaderSection() {
         <div className="absolute inset-0 bg-black/40"></div>
 
         {/* CONTENT ON IMAGE (MOBILE) */}
-        <div className="absolute inset-0 flex flex-col justify-center px-6 md:hidden text-white">
-          <h1 className="text-4xl text-center font-extrabold mb-4">Ngo Kitchen</h1>
+        <div className="absolute inset-0 flex flex-col justify-start mt-8 md:mt-0 items-start px-6 md:hidden text-white">
+          <h1 className="text-4xl text-center font-extrabold mb-4">Food Bank</h1>
 
           <p className="text-md font-bold text-center">
             <span className="text-violet-300">Together We Feed,</span>{' '}
@@ -30,13 +30,13 @@ export default function HeaderSection() {
           <div className="flex flex-col space-y-3 mt-60">
             <Link
               href="/signup"
-              className="whitespace-nowrap bg-red-600 px-5 py-2 rounded-lg font-bold text-center"
+              className="mt-16 md:mt-0 whitespace-nowrap bg-red-600 px-5 py-2 rounded-lg font-bold text-center"
             >
-              Get Started
+              Join Us Now
             </Link>
             <Link
               href="/contact"
-              className="whitespace-nowrap bg-blue-700 px-5 py-2 rounded-lg font-bold text-center"
+              className="hidden md:block whitespace-nowrap bg-blue-700 px-5 py-2 rounded-lg font-bold text-center"
             >
               Set Your Campaign
             </Link>
