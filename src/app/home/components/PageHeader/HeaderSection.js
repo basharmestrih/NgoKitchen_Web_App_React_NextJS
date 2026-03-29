@@ -30,7 +30,7 @@ export default function HeaderSection() {
           <div className="flex flex-col space-y-3 mt-60">
             <Link
               href="/signup"
-              className="mt-16 md:mt-0 whitespace-nowrap bg-red-600 px-5 py-2 rounded-lg font-bold text-center"
+              className="mt-20 md:mt-0 whitespace-nowrap bg-red-600 px-5 py-2 rounded-lg font-bold text-center"
             >
               Join Us Now
             </Link>
