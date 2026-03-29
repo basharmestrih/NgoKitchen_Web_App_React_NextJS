@@ -114,7 +114,7 @@ export default function YourCart({
                     {cart.map((item, index) => (
                       <div
                         key={`${item.title}-${index}`}
-                        className="rounded-[1.75rem] bg-white/10 p-4 backdrop-blur"
+                        className="rounded-[1.75rem] w-full bg-white/10 p-4 backdrop-blur"
                       >
                         <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
                           <img
