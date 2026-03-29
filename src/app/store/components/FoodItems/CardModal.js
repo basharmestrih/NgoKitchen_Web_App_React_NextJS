@@ -60,7 +60,7 @@ export default function CardModal({ onClose, onAdd, item }) {
         </button>
 
         <div className="grid h-full grid-cols-1 overflow-hidden lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="relative min-h-[260px] overflow-hidden bg-slate-200">
+          <div className="relative min-h-[300px] overflow-hidden bg-slate-200">
             <img
               src={item.image}
               alt={item.title}
