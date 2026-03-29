@@ -54,7 +54,7 @@ export default function CardModal({ onClose, onAdd, item }) {
           type="button"
           onClick={onClose}
           aria-label="Close modal"
-          className="absolute right-4 top-20 z-30 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-lg text-slate-700 shadow-md transition hover:bg-red-50 hover:text-red-600 sm:right-5 sm:top-5 sm:h-11 sm:w-11 sm:text-2xl"
+          className="absolute right-4 top-16 z-30 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-lg text-slate-700 shadow-md transition hover:bg-red-50 hover:text-red-600 sm:right-5 sm:top-5 sm:h-11 sm:w-11 sm:text-2xl"
         >
           &times;
         </button>
