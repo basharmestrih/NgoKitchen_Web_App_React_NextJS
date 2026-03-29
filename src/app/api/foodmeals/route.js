@@ -1,5 +1,5 @@
 import connectDB from "@/lib/mongoose";
-import foodmeals from "../../../../models/foodmeals";
+import foodmeals from "@/models/foodmeals";
 
 
 export async function GET() {

@@ -1,5 +1,5 @@
 import connectDB from '@/lib/mongoose';
-import Order from '../../../../models/Order.js';
+import Order from '@/models/Order.js';
 
 export async function POST(req) {
   try {

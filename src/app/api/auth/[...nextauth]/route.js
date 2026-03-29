@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import connectDB from "@/lib/mongoose";
-import User from "../../../../../models/User.js";
+import User from "@/models/User.js";
 
 import process from "node:process";
 import dotenv from "dotenv";

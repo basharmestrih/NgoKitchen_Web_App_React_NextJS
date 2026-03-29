@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import connectDB from '@/lib/mongoose';
 import mongoose from 'mongoose';
-import User from "../../../../models/NewUser.js";
+import User from "@/models/NewUser.js";
 
 
 
