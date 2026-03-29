@@ -54,7 +54,7 @@ export default function CardModal({ onClose, onAdd, item }) {
           type="button"
           onClick={onClose}
           aria-label="Close modal"
-          className="absolute right-4 top-24 z-30 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-lg text-slate-700 shadow-md transition hover:bg-red-50 hover:text-red-600 sm:right-5 sm:top-5 sm:h-11 sm:w-11 sm:text-2xl"
+          className="absolute right-4 top-48 z-30 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-lg text-slate-700 shadow-md transition hover:bg-red-50 hover:text-red-600 sm:right-5 sm:top-5 sm:h-11 sm:w-11 sm:text-2xl"
         >
           &times;
         </button>
@@ -69,7 +69,7 @@ export default function CardModal({ onClose, onAdd, item }) {
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-950/10 to-transparent" />
 
             <div className="absolute bottom-0 left-0 right-0 p-6 text-white sm:p-8">
-              <div className="mb-4 hidden flex-wrap items-center gap-2 text-xs font-bold uppercase tracking-[0.24em] text-white/80 sm:flex">
+              <div className="mt-8 mb-2 hidden flex-wrap items-center gap-2 text-xs font-bold uppercase tracking-[0.24em] text-white/80 sm:flex">
                 <span className="rounded-full bg-white/15 px-3 py-1 backdrop-blur">
                   {item.category}
                 </span>
