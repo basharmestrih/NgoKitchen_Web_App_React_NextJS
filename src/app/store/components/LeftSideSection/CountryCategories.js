@@ -1,48 +1,45 @@
-import { FaTrashAlt } from "react-icons/fa";
+import { Close } from "@mui/icons-material";
 
-export default function CountryCategories({ onSelect, selectedCountry }) {
-  const categories = [
-    "Italy",
-    "France",
-    "Germany",
-    "Luxembourg",
-    "Morrocco",
-    "Syria",
-    "Senegal",
-    "Sudan",
-  ];
+// Map countries to their ISO flags or emoji
+const countryData = [
+  { name: "Global"},
+  { name: "Middle East"},
+  { name: "Italy" },
+  { name: "France" },
+  { name: "Mexico" },
+  { name: "Japan" },
+  { name: "Syria"},
+  { name: "Lebanon"},
+  
+];
 
+export default function CountryChips({ onSelectCountry, selectedCountry }) {
   return (
-    <div className="font-sansation w-[18rem] p-4 bg-white shadow-md rounded-xl">
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-2xl font-bold text-blue-600">Categories</h2>
-        {selectedCountry && (
-          
-          <button
-            onClick={() => onSelect(null)}
-            title="Clear Filter"
-            className="text-red-500 hover:text-red-700 transition"
-          >
-            <FaTrashAlt />
-          </button>
-         
-        )}
+    <div className="w-full py-2 px-1">
+      <div className="flex flex-wrap gap-1 sm:gap-2">
+        {countryData.map((country) => {
+          const isSelected = selectedCountry === country.name;
+
+          return (
+            <button
+              key={country.name}
+              onClick={() => onSelectCountry(isSelected ? null : country.name)}
+              className={`flex items-center gap-2 px-3 py-1.5 rounded-full border transition duration-200 text-sm font-bold ${
+                isSelected
+                  ? "bg-blue-600 border-blue-600 text-white shadow-lg"
+                  : "bg-transparent border-gray-300 text-gray-700 hover:border-blue-400"
+              }`}
+            >
+              <span className="text-lg">{country.flag}</span>
+              <span className="whitespace-nowrap">{country.name}</span>
+
+              {isSelected && (
+                <Close className="text-xs text-blue-100" aria-hidden />
+              )}
+            </button>
+          );
+        })}
       </div>
-      <p className="text-md font-bold mb-4 text-gray-400">By country:</p>
-      <ul className="space-y-3">
-        {categories.map((cat) => (
-          <li
-            key={cat}
-            onClick={() => onSelect(cat)}
-            className={`font-bold text-xl cursor-pointer flex items-center justify-between ${
-              selectedCountry === cat ? "text-blue-600 " : "text-gray-700"
-            } hover:text-blue-600 transition`}
-          >
-            {cat}
-            {selectedCountry === cat && <span className="text-green-500">✓</span>}
-          </li>
-        ))}
-      </ul>
     </div>
   );
 }

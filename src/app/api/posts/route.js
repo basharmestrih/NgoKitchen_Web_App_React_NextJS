@@ -1,14 +1,13 @@
-import  connectDB  from '@/lib/mongoose';
-import Post from '../../../../models/Post.js';
+import connectDB from "@/lib/mongoose";
+import Post from "../../../../models/Post.js";
 
 export async function POST(req) {
   try {
-    const { title, description, image, author, country, selectedAge, targetDonation } = await req.json();
+    const { title, description, image, author, country, selectedAge, targetDonation } =
+      await req.json();
 
-    
-    // ✅ Updated: Now checking for "name"
     if (!title || !description) {
-      return new Response(JSON.stringify({ error: 'Missing required fields' }), {
+      return new Response(JSON.stringify({ error: "Missing required fields" }), {
         status: 400,
       });
     }
@@ -22,9 +21,8 @@ export async function POST(req) {
       author,
       country,
       selectedAge,
-      targetDonation
+      targetDonation,
     });
-    console.log(newPost)
 
     return new Response(JSON.stringify(newPost), { status: 201 });
   } catch (error) {

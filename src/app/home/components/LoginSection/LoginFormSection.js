@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { signIn,getSession  } from "next-auth/react";
-import { GradientCircularProgress } from "../../../community/components/LoadingIndicator/LoadingIndicator.js"; // import your gradient spinner
+import { signIn, getSession } from "next-auth/react";
+import { LoadingSpinner } from "../../../community/components/LoadingIndicator/LoadingIndicator.js";
 
 export default function LoginFormSection() {
   const [email, setEmail] = useState("");
@@ -12,109 +12,113 @@ export default function LoginFormSection() {
   const [loading, setLoading] = useState(false);
 
   const router = useRouter();
-  
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setLoading(true);
+
     const res = await signIn("credentials", {
       email,
       password,
       redirect: false,
     });
-      setLoading(true);
-    
 
-   if (res.ok) {
-    // Wait for the session to be available
-    const session = await getSession();
-    console.log("🟢 Logged-in session:", session);
-
-    router.push("/");
-  } else {
-    alert("Login failed");
-     setLoading(false);
-  }
-};
-
+    if (res.ok) {
+      const session = await getSession();
+      console.log("Logged-in session:", session);
+      router.push("/store");
+    } else {
+      alert("Login failed");
+      setLoading(false);
+    }
+  };
 
   return (
     <>
-      {/* Loading Overlay */}
       {loading && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-          <GradientCircularProgress size={80} />
+          <LoadingSpinner size={80} />
         </div>
       )}
-      
-    <form onSubmit={handleLogin} className="bg-white p-8 rounded-2xl w-1/2 shadow-lg">
-      <h2 className="font-saira text-2xl font-extrabold mb-6 text-center text-gray-800">Login to your NGO Kitchen account</h2>
-      <input
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="Email"
-        className="block w-full mb-4 p-3 border border-gray-300 rounded-lg"
-        required
-      />
-      <div className="relative mb-4">
-        <input
-          type={showPassword ? "text" : "password"}
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-          className="block w-full p-3 border border-gray-300 rounded-lg"
-          required
-        />
+
+      <form
+        onSubmit={handleLogin}
+        className="bg-white p-6 md:p-8 rounded-2xl w-full md:w-1/2 shadow-lg mx-auto"
+      >
+        <h2 className="font-saira text-xl md:text-2xl font-extrabold mb-6 text-center text-gray-800">
+          Login to NGO Kitchen
+        </h2>
+
+        <div className="mb-4">
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email Address"
+            className="block w-full p-3 border border-gray-300 rounded-lg text-base focus:ring-2 focus:ring-blue-500 outline-none transition-all"
+            required
+          />
+        </div>
+
+        <div className="relative mb-6">
+          <input
+            type={showPassword ? "text" : "password"}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+            className="block w-full p-3 border border-gray-300 rounded-lg text-base focus:ring-2 focus:ring-blue-500 outline-none transition-all"
+            required
+          />
+          <button
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-blue-600 font-semibold hover:underline"
+          >
+            {showPassword ? "Hide" : "Show"}
+          </button>
+        </div>
+
+        <div className="flex flex-col sm:flex-row gap-4 mb-6">
+          <button
+            type="submit"
+            className="w-full sm:w-1/2 bg-blue-600 text-white py-3 rounded-lg font-bold hover:bg-blue-700 transition-colors"
+          >
+            Login as NGO
+          </button>
+          <button
+            type="submit"
+            className="w-full sm:w-1/2 bg-red-600 text-white py-3 rounded-lg font-bold hover:bg-red-700 transition-colors"
+          >
+            Login as Donor
+          </button>
+        </div>
+
+        <div className="flex items-center justify-center mb-4">
+          <div className="flex-grow border-t border-gray-200"></div>
+          <span className="px-3 text-gray-500 text-sm">or</span>
+          <div className="flex-grow border-t border-gray-200"></div>
+        </div>
+
         <button
           type="button"
-          onClick={() => setShowPassword((prev) => !prev)}
-          className="absolute right-3 top-3 text-sm text-blue-600 hover:underline"
+          onClick={() => alert("Handle Google login here")}
+          className="flex items-center justify-center gap-3 w-full border border-gray-300 py-3 rounded-lg text-sm font-bold hover:bg-gray-50 transition-all"
         >
-          {showPassword ? "Hide" : "Show"}
+          <img
+            src="https://th.bing.com/th/id/R.96c1a6566397efcf7de758fd2a6f116a?rik=LwK4OM1JQPW06A&pid=ImgRaw&r=0"
+            alt="Google"
+            className="h-5 w-5"
+          />
+          Continue with Google
         </button>
-      </div>
 
-      <div className="mb-6 text-left">
-        <a href="#" className="text-sm text-blue-600 hover:underline">
-          Forgot password?
-        </a>
-      </div>
-
-      <div className="flex justify-between gap-4 mb-4">
-        <button
-          type="submit"
-          className="w-1/2 bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg text-sm font-extrabold"
-        >
-          Login as NGO
-        </button>
-        <button
-          type="submit"
-          className="w-1/2 bg-red-600 hover:bg-red-700 text-white py-3 rounded-lg text-sm font-extrabold"
-        >
-          Login as Donor
-        </button>
-      </div>
-
-      <div className="flex items-center justify-center mb-2">
-        <span className="text-gray-500 text-sm">or</span>
-      </div>
-
-      <button
-        type="button"
-        onClick={() => alert("Handle Google login here")}
-        className="flex items-center justify-center gap-2 w-full border border-gray-300 py-3 rounded-lg text-sm font-medium hover:bg-gray-100"
-      >
-        <img src="https://th.bing.com/th/id/R.96c1a6566397efcf7de758fd2a6f116a?rik=LwK4OM1JQPW06A&pid=ImgRaw&r=0" alt="Google" className="h-5 w-5" />
-        Continue with Google
-      </button>
-
-      <div className="mt-4 text-center text-sm text-gray-600">
-        Don’t have an account?{" "}
-        <a href="/signup" className="text-blue-600 hover:underline font-medium">
-          Sign up now
-        </a>
-      </div>
-    </form>
-     </>
+        <div className="mt-6 text-center text-sm text-gray-600 font-medium">
+          Don’t have an account?{" "}
+          <a href="/signup" className="text-blue-600 hover:underline font-bold">
+            Sign up now
+          </a>
+        </div>
+      </form>
+    </>
   );
 }

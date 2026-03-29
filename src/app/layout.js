@@ -1,8 +1,7 @@
-// app/layout.js
 import "../styles/globals.css";
 import SessionProviderWrapper from "./components/SessionProviderWrapper";
 import LayoutWrapper from "./LayoutWrapper.js";
-import ReactQueryProvider from "./components/ReactQueryProvider"; // ✅
+import ReactQueryProvider from "./components/ReactQueryProvider";
 
 export const metadata = {
   title: "Next.js",

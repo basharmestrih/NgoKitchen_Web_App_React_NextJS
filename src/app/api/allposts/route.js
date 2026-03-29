@@ -5,7 +5,7 @@ export async function GET(req) {
   try {
     await connectDB();
 
-    const allposts = await Post.find(); // fetch all food items
+    const allposts = await Post.find(); 
 
     return new Response(JSON.stringify(allposts), {
       status: 200,

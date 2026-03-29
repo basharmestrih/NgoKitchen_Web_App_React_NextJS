@@ -1,21 +1,16 @@
-import React, { useState, forwardRef, useImperativeHandle } from "react";
+import { forwardRef, useImperativeHandle, useState } from "react";
 import {
-  Typography,
-  Paper,
   Box,
-  Divider,
-  Slider,
-  FormGroup,
-  FormControlLabel,
+  Checkbox,
   Chip,
-  Avatar,
-  ToggleButton,
-  ToggleButtonGroup,
+  Divider,
+  FormControlLabel,
+  FormGroup,
+  Paper,
+  Slider,
+  Typography,
 } from "@mui/material";
-import { styled } from '@mui/material/styles';
-import Checkbox, { CheckboxProps } from '@mui/material/Checkbox';
-import FlagCircleIcon from '@mui/icons-material/FlagCircle';
-import CheckIcon from "@mui/icons-material/Check";
+import { styled } from "@mui/material/styles";
 import { useCountryHook } from "./hooks/useCountryHook.js";
 import { useAgeHook } from "./hooks/useAgeHook.js";
 
@@ -34,145 +29,91 @@ const ngos = ["UNICEF", "Red Cross", "Save the Children", "WHO"];
 const ageGroups = ["kids", "adults", "Elderly People"];
 const countries = ["SYRIA", "TURKEY", "CONGO", "LEBANON", "UAE","PALESTINE","SOMALIA","MYANMAR"];
 
-
 const PostFilters = forwardRef(({ onApply }, ref) => {
   const [donation, setDonation] = useState(100);
-    const { country, handleClick } = useCountryHook();
-
+  const { country, handleClick } = useCountryHook();
   const { selected, handleSetAgeGroups } = useAgeHook();
-   // Expose the selected filters to parent via ref
+
   useImperativeHandle(ref, () => ({
-    getFilters: () => ({
-      countries: country,
-      ageGroup: selected,
-    }),
+    getFilters: () => ({ countries: country, ageGroup: selected }),
   }));
 
   return (
     <Paper
-      elevation={3}
+      elevation={4}
       sx={{
         width: "100%",
-        maxWidth: 550,
-        height:565,
-        position: "sticky",
-        zIndex: 10,
-        top: 20,
-        p: 4,
-        ml: 8,
-        
-        borderRadius: 3,
-        backdropFilter: "blur(8px)",
-        backgroundColor: "rgba(255, 255, 255, 0.8)",
-        border: "1px solid rgba(0, 0, 0, 0.2)",
+        position: { xs: "relative", md: "sticky" },
+        top: { md: 20 },
+        p: { xs: 2, md: 4 },
+        mb: { xs: 4, md: 0 },
+        borderRadius: 4,
+        backgroundColor: "white",
+        border: "1px solid #e2e8f0",
       }}
     >
-      {/* Filter by Country */}
-      <Box mb={1}>
-        <Typography variant="h6" gutterBottom>
-          Filter posts by target country:
-        </Typography>
-       <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
-      {countries.map((item) => (
-        <Chip
-          key={item}
-          icon={<FlagCircleIcon />}
-          label={item}
-          clickable
-          onClick={() => handleClick(item)}
+      <Typography variant="h6" sx={{ fontWeight: 800, mb: 2, color: "#1e293b" }}>
+        FILTER POSTS
+      </Typography>
 
-          color={country.includes(item) ? "error" : "info"}
-        />
-      ))}
-    </Box>
-  
-      </Box>
-      <Divider sx={{ my: 2 }} />
-
-      {/* NGOs */}
-      <Box mb={1} mt={5}
-      >
-        <Typography variant="h6" gutterBottom>
-          Filter by NGOs:
-        </Typography>
-        <BpCheckbox  />   UNICEF
-         <BpCheckbox  />   NRC
-          <BpCheckbox  />   DRC
-           <BpCheckbox  />   EMPA
-            <BpCheckbox  />   MIMT
-      </Box>
-      <Divider sx={{ my: 2 }} />
-      {/* Target Age + Donation Slider */}
-<Box mb={1} display="flex" justifyContent="space-between" alignItems="flex-start">
-  {/* Target Age */}
-  <Box>
-    <Typography variant="h6" gutterBottom>
-      Target Age:
-    </Typography>
-    <FormGroup>
-      {ageGroups.map((group) => (
-        <FormControlLabel
-          key={group}
-          control={
-            <Checkbox
-              name={group}
-              color="error"
-              checked={selected === group}
-              onChange={handleSetAgeGroups}
+      {/* Countries */}
+      <Box mb={3}>
+        <Typography variant="subtitle2" sx={{ fontWeight: 700, mb: 1.5 }}>By Country:</Typography>
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+          {countries.map((item) => (
+            <Chip
+              key={item}
+              label={item}
+              onClick={() => handleClick(item)}
+              color={country.includes(item) ? "primary" : "default"}
+              variant={country.includes(item) ? "filled" : "outlined"}
+              size="small"
+              sx={{ fontWeight: "bold" }}
             />
-          }
-          label={group}
-        />
-      ))}
-    </FormGroup>
-  </Box>
-  {/* Donation + Buttons */}
-  <Box>
-    <Typography variant="h6" gutterBottom>
-      Filter by Target Donation:
-    </Typography>
-    <Box display="flex" alignItems="center" gap={2}>
-      <Slider
-        value={donation}
-        onChange={(e, val) => setDonation(val)}
-        min={0}
-        max={1000}
-        sx={{ width: 150 }}
-      />
-      <Typography variant="body2" sx={{ minWidth: 40 }}>
-        ${donation}
-      </Typography>
-    </Box>
-  </Box>
-</Box>
- {/* Text Buttons */}
-    <Box mt={4} display="flex" justifyContent="flex-end" gap={4} mr={10}>
-      <Typography
-        sx={{
-          cursor: 'pointer',
-          color: 'text.secondary',
-          fontWeight: 'bold',
-          fontSize:'18px',
-          '&:hover': { textDecoration: 'underline' },
-        }}
-      >
-        Cancel
-      </Typography>
-      <Typography
-        sx={{
-          cursor: 'pointer',
-          color: 'primary.main',
-          fontSize:'18px',
-          fontWeight: 'bold',
-          '&:hover': { textDecoration: 'underline' },
-        }}
-          onClick={onApply}
-      >
-        Apply
-      </Typography>
-    </Box>
+          ))}
+        </Box>
+      </Box>
 
+      <Divider />
+
+      {/* Age & Donation - Stack on small screens */}
+      <Box sx={{ display: "flex", flexDirection: { xs: "column", sm: "row", md: "column" }, gap: 3, mt: 3 }}>
+        <Box flex={1}>
+          <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>Target Age:</Typography>
+          <FormGroup>
+            {ageGroups.map((group) => (
+              <FormControlLabel
+                key={group}
+                control={<Checkbox checked={selected === group} onChange={handleSetAgeGroups} name={group} size="small" />}
+                label={group}
+              />
+            ))}
+          </FormGroup>
+        </Box>
+
+        <Box flex={1}>
+          <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>Min Donation: ${donation}</Typography>
+          <Slider
+            value={donation}
+            onChange={(e, val) => setDonation(val)}
+            min={0}
+            max={1000}
+            sx={{ mt: 1 }}
+          />
+        </Box>
+      </Box>
+
+      {/* Actions */}
+      <Box mt={4} display="flex" justifyContent="flex-end" gap={2}>
+        <Typography onClick={() => window.location.reload()} sx={{ cursor: 'pointer', color: 'gray', fontWeight: 700 }}>
+          Reset
+        </Typography>
+        <Typography onClick={onApply} sx={{ cursor: 'pointer', color: '#3B82F6', fontWeight: 900 }}>
+          Apply Filters
+        </Typography>
+      </Box>
     </Paper>
   );
 });
+
 export default PostFilters;

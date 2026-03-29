@@ -1,19 +1,50 @@
-import mongoose from 'mongoose';
-import process from "node:process";
+import mongoose from "mongoose";
+
+let cached = global.mongoose;
+
+if (!cached) {
+  cached = global.mongoose = { conn: null, promise: null };
+}
 
 const connectDB = async () => {
-  if (mongoose.connection.readyState >= 1) {
-    console.log('Already connected to MongoDB');
-    return;
-  }
-
   try {
-    const db = await mongoose.connect(process.env.MONGODB_URI);
-    console.log('MongoDB connected:', db.connection.host);
-    console.log('Database Name:', db.connection.name); 
+    // Already connected?
+    if (cached.conn) {
+      console.log("[MongoDB] Already connected");
+      console.log("[MongoDB] Host:", cached.conn.connection.host);
+      console.log("[MongoDB] Database:", cached.conn.connection.name);
+      console.log("[MongoDB] ReadyState:", cached.conn.connection.readyState);
+      return cached.conn;
+    }
+
+    // No promise yet?
+    if (!cached.promise) {
+      if (!process.env.MONGODB_URI) {
+        throw new Error("MONGODB_URI is missing");
+      }
+
+      console.log("[MongoDB] Connecting to:", process.env.MONGODB_URI);
+
+      // Create a new connection promise
+      cached.promise = mongoose.connect(process.env.MONGODB_URI, {
+        bufferCommands: false,
+      });
+    }
+
+    // Wait for connection
+    cached.conn = await cached.promise;
+
+    // Log connection details
+    console.log("[MongoDB] Connected successfully!");
+    console.log("[MongoDB] Host:", cached.conn.connection.host);
+    console.log("[MongoDB] Database:", cached.conn.connection.name);
+    console.log("[MongoDB] ReadyState:", cached.conn.connection.readyState);
+    console.log("[MongoDB] Mongoose version:", mongoose.version);
+
+    return cached.conn;
   } catch (error) {
-    console.error('Error connecting to MongoDB:', error.message);
-    process.exit(1); // Exit the process with failure
+    console.error("[MongoDB] Connection error:", error);
+    throw error; // Do not crash server in Next.js
   }
 };
 

@@ -5,9 +5,34 @@ export default function useFilteredItems(items) {
   const [selectedCategory, setSelectedCategory] = useState(null);
 
   const filteredItems = useMemo(() => {
-    return items.filter((item) => {
-      const countryMatch = selectedCountry ? item.country === selectedCountry : true;
-      const categoryMatch = selectedCategory ? item.category === selectedCategory : true;
+    const arr = Array.isArray(items) ? items : [];
+    const normalize = (value) => String(value ?? "").trim().toLowerCase();
+
+    return arr.filter((item) => {
+      const normalizedCountry = normalize(item?.country);
+      const normalizedSelectedCountry = normalize(selectedCountry);
+      const normalizedSelectedCategory = normalize(selectedCategory);
+
+      const countryMatch = selectedCountry
+        ? normalizedCountry === normalizedSelectedCountry
+        : true;
+
+      const categoryCandidates = [
+        item?.name,
+        item?.title,
+        item?.category,
+      ]
+        .map(normalize)
+        .filter(Boolean);
+
+      const categoryMatch = selectedCategory
+        ? categoryCandidates.some(
+            (value) =>
+              value === normalizedSelectedCategory ||
+              value.includes(normalizedSelectedCategory)
+          )
+        : true;
+
       return countryMatch && categoryMatch;
     });
   }, [items, selectedCountry, selectedCategory]);

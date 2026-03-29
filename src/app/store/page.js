@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import FoodPage from "./storepage.js";
+import { LoadingSpinner } from "../community/components/LoadingIndicator/LoadingIndicator.js";
 
 export default function Page() {
   const [items, setItems] = useState([]);
@@ -9,14 +10,11 @@ export default function Page() {
 
   useEffect(() => {
     const fetchItems = async () => {
-      console.log("🌐 [Client] Fetching /api/foodmeals");
 
       try {
         const res = await fetch("/api/foodmeals");
-        console.log("📥 [Client] Response status:", res.status);
 
         const data = await res.json();
-        console.log("🍽️ [Client] Items received:", data);
 
         setItems(data);
       } catch (error) {
@@ -29,7 +27,13 @@ export default function Page() {
     fetchItems();
   }, []);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-gray-100">
+        <LoadingSpinner size={72} />
+      </div>
+    );
+  }
 
   return <FoodPage items={items} />;
 }

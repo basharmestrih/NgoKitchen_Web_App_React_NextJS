@@ -1,100 +1,53 @@
-import { FaTrashAlt } from "react-icons/fa";
+import { Delete } from "@mui/icons-material";
 
-export default function FoodCategories({ onSelectFood,onSelectCountry,selectedCategory,selectedCountry}) {
-    const foodcategories = [
-      "Pasta",
-      "Tapas",
-      "Bratwurst",
-      "Paella",
-      "Schnitzel",
-      "Bouillabaisse",
-      "Risotto",
-      "Goulash",
-    ];
-      const countrycategories = [
-    "Italy",
-    "France",
-    "Germany",
-    "Luxembourg",
-    "Morrocco",
-    "Syria",
-    "Senegal",
-    "Sudan",
+export default function FoodCategories({
+  onSelectFood,
+  onSelectCountry,
+  selectedCategory,
+  selectedCountry,
+}) {
+  const foodcategories = [
+    "Pasta",
+    "Chicken",
+    "Pizza",
+    "Burger",
+    "Sushi",
+    "Falafel",
+    "Tacos",
+    "Salad",
   ];
-  
-    return (
-      <div className="w-[18rem] p-4 bg-white shadow-md rounded-xl">
-              <div className="flex justify-between items-center mb-1">
 
-        <h2 className="text-2xl font-bold mb-4 text-blue-600">Categories</h2>
-       
-                   </div>
-                   
-        <p className="text-xl font-bold mb-4 text-rose-600">By food:</p>
-        <ul className="space-y-3">
-          {foodcategories.map((foodcat) => (
-            <li
+  return (
+    <div className="w-full">
+      <div className="flex flex-wrap gap-1 sm:gap-2">
+        {foodcategories.map((foodcat) => {
+          const isSelected = selectedCategory === foodcat;
+
+          return (
+            <button
               key={foodcat}
-              onClick={() => onSelectFood(foodcat)}
-              className={`font-bold text-xl cursor-pointer flex items-center justify-between ${
-              selectedCategory === foodcat ? "text-blue-600 font-bold" : "text-gray-700"
-            } hover:text-blue-600 transition`}
-          >
-            {foodcat}
-            {selectedCategory === foodcat && (
-            <button
-              onClick={(event) => {
-                event.stopPropagation(); // Stop the parent click event
-                onSelectFood(null);
-              }}
-              title="Clear Filter"
-              className="text-red-500 hover:text-red-700 transition"
+              onClick={() => onSelectFood(isSelected ? null : foodcat)}
+              className={`flex items-center gap-2 px-3 py-1.5 rounded-full border transition duration-200 text-sm font-bold ${
+                isSelected
+                  ? "bg-blue-600 border-blue-600 text-white shadow-lg"
+                  : "bg-transparent border-gray-300 text-gray-700 hover:border-blue-400"
+              }`}
             >
-              <FaTrashAlt />
+              <span className="whitespace-nowrap">{foodcat}</span>
+              {isSelected && (
+                <Delete
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    onSelectFood(null);
+                  }}
+                  className="text-xs text-white"
+                  aria-hidden
+                />
+              )}
             </button>
-          )}
-            {selectedCategory === foodcat && <span className="text-green-500">✓</span>}
-          
-            </li>
-          ))}
-        </ul>
-
-
-
-        <p className="text-xl font-bold mb-4 text-rose-600 mt-4">By country:</p>
-      <ul className="space-y-3">
-        {countrycategories.map((countrycat) => (
-          <li
-            key={countrycat}
-            onClick={() => onSelectCountry(countrycat)}
-            className={`font-bold text-xl cursor-pointer flex items-center justify-between ${
-              selectedCountry === countrycat ? "text-blue-600 " : "text-gray-700"
-            } hover:text-blue-600 transition`}
-          >
-            {countrycat}
-            {selectedCountry === countrycat && (
-            <button
-              onClick={(event) => {
-                event.stopPropagation(); // Stop the parent click event
-                onSelectCountry(null);
-              }}
-              title="Clear Filter"
-              className="text-red-500 hover:text-red-700 transition"
-            >
-              <FaTrashAlt />
-            </button>
-          )}
-            {selectedCountry === countrycat && <span className="text-green-500">✓</span>}
-          </li>
-        ))}
-      </ul>
-
-
-
-
-
-
+          );
+        })}
       </div>
-    );
-  }
-  
+    </div>
+  );
+}

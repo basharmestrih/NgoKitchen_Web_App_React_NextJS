@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { GradientCircularProgress } from "../../community/components/LoadingIndicator/LoadingIndicator.js"; // import your gradient spinner
+import { LoadingSpinner } from "../../community/components/LoadingIndicator/LoadingIndicator.js";
 import WelcomePopup from "./WelcomePopup.js";
 export default function SignupForm() {
   const [form, setForm] = useState({ name: '', age: '', email: '', password: '' });
@@ -54,13 +54,7 @@ export default function SignupForm() {
             required
             className="p-3 border rounded-lg w-full"
           />
-          <button
-            type="button"
-            onClick={() => setShowPassword(!showPassword)}
-            className="absolute right-3 top-3 text-sm text-blue-600 hover:underline"
-          >
-            {showPassword ? "Hide" : "Show"}
-          </button>
+
         </div>
         <button
           type="submit"
@@ -77,14 +71,13 @@ export default function SignupForm() {
           className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
           aria-label="Loading"
         >
-          <GradientCircularProgress size={80} />
+          <LoadingSpinner size={80} />
         </div>
       )}
 
-      {/* Popup message */}
       {showPopup && (
        <WelcomePopup
-          message={message}
+          message={"Your account has been created successfully, Give it a try!"}
           onClose={() => setShowPopup(false)}
         />
       )}

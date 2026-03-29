@@ -31,49 +31,40 @@ export default function PostCard({ post }) {
     setLiked((prev) => !prev);
   };
 
-  return (
-    <div className="bg-white w-full shadow-lg rounded-xl overflow-hidden mb-8 border border-gray-200">
+return (
+    <div className="bg-white w-full shadow-lg rounded-xl overflow-hidden mb-6 border border-gray-200">
       {post.image && (
         <img
           src={post.image}
           alt={post.title}
-          className="w-full h-96 object-cover"
+          className="w-full h-[250px] md:h-96 object-cover"
         />
       )}
 
-      <div className="p-2 py-2">
+      <div className="p-4">
         <PostBody post={post} />
-        <div className="flex justify-center items-center">
+        
+        <div className="mt-2">
           <ReactionBar
             post={post}
             postlike={liked}
             showDonate={showDonate}
-            toggleLike={toggleLike}
-            toggleDonate={toggleDonate}
+            toggleLike={() => setLiked(!liked)}
+            toggleDonate={() => setShowDonate(!showDonate)}
           />
         </div>
 
         {showDonate && (
-          <div className="mt-4 flex justify-center items-center gap-x-20">
-            <div className="flex items-center gap-2 border px-3 py-1 rounded-md bg-gray-50">
-              <button
-                onClick={decrementTarget}
-                className="px-2 py-1 text-sm font-bold"
-              >
-                -
-              </button>
-              <span className="font-medium">{target} $</span>
-              <button
-                onClick={incrementTarget}
-                className="px-2 py-1 text-sm font-bold"
-              >
-                +
-              </button>
+          <div className="mt-4 p-3 bg-blue-50 rounded-lg flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div className="flex items-center gap-4 border-2 border-blue-200 px-4 py-2 rounded-xl bg-white">
+              <button onClick={() => setTarget(Math.max(1, target - 50))} className="text-xl font-bold text-blue-600">-</button>
+              <span className="font-bold text-lg">{target} $</span>
+              <button onClick={() => setTarget(target + 50)} className="text-xl font-bold text-blue-600">+</button>
             </div>
 
             <button
-              onClick={hideDonate}
-              className="text-sm font-semibold text-green-600 hover:underline"
+              onClick={() => setShowDonate(false)}
+              className="w-full sm:w-auto bg-green-600 text-white px-8 py-2 rounded-xl font-bold shadow-md active:scale-95 transition-transform"
             >
               Donate Now
             </button>

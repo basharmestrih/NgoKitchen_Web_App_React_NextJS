@@ -21,8 +21,8 @@ export default function ExtrasModal({ onClose, onAdd, item }) {
   const decrement = () => setQuantity((q) => Math.max(1, q - 1));
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
-      <div className="bg-white rounded-xl px-6 py-4 w-80 shadow-lg relative">
+    <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 px-4">
+      <div className="bg-white rounded-xl px-6 py-6 w-full max-w-sm shadow-lg relative sm:max-w-md">
         <h3 className="text-xl font-extrabold mt-4 mb-4 text-gray-800 text-center">
           Choose Extras
         </h3>

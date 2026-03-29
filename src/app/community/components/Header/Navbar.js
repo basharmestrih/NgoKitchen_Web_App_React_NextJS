@@ -2,8 +2,8 @@ import React from 'react';
 
 const Navbar = ({ activeTab, changeTab }) => {
   return (
-    <nav className="font-saira
-     mx-auto mt-2 bg-gray-700 shadow-md rounded-lg w-[500px] px-10 py-4 flex gap-10 items-center justify-between">
+    <nav className="font-saira mx-auto mt-4 mb-6 bg-gray-800 shadow-xl rounded-2xl 
+      w-[95%] max-w-[550px] px-4 md:px-10 py-4 flex gap-2 md:gap-10 items-center justify-around md:justify-between transition-all">
       {['create', 'myposts', 'allposts'].map((tab) => (
         <div key={tab} className="relative">
           {activeTab === tab && (
