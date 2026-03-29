@@ -78,7 +78,7 @@ export default function CardModal({ onClose, onAdd, item }) {
                 </span>
               </div>
 
-              <h1 className="max-w-xl text-3xl font-black tracking-tight sm:text-5xl">
+              <h1 className="max-w-xl text-xl font-black tracking-tight sm:text-5xl">
                 {item.title}
               </h1>
 

@@ -120,7 +120,7 @@ export default function YourCart({
                           <img
                             src={item.image}
                             alt={item.title}
-                            className="h-24 w-full rounded-[1.25rem] object-cover sm:w-24"
+                            className="h-32 w-full rounded-[1.25rem] object-cover sm:w-24"
                           />
 
                           <div className="min-w-0 flex-1">

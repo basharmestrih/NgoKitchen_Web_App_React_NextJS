@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 export default function CampaignSection() {
   return (
-    <div className="font-saira w-full flex flex-col md:flex-row rounded-2xl overflow-hidden shadow-lg bg-white">
+    <div className="font-saira w-full flex flex-col md:flex-row rounded-none overflow-hidden shadow-lg bg-white">
       {/* Content Area */}
       <div className="w-full md:w-1/4 bg-gray-200 p-6 md:p-8 flex flex-col justify-center space-y-4">
         <h2 className="text-2xl md:text-4xl font-extrabold text-gray-800">Discover charity campaigns</h2>
@@ -19,9 +19,11 @@ export default function CampaignSection() {
         </div>
       </div>
       {/* Image Area */}
-      <div className="w-full md:w-3/4 h-64 md:h-auto relative">
-      <Image src="/rest1.jpg" alt="NGO Banner" fill className="object-cover" />
-        <div className="absolute inset-0 bg-black bg-opacity-30"></div>
+      <div className="w-full md:w-3/4 ">
+        <div className="relative h-64 overflow-hidden md:h-full ">
+          <Image src="/rest1.jpg" alt="NGO Banner" fill className="object-cover" />
+          <div className="absolute inset-0 bg-black bg-opacity-30"></div>
+        </div>
       </div>
     </div>
   );

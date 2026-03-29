@@ -28,7 +28,7 @@ export default function Header() {
           color: "#111827",
         }}
       >
-        <Toolbar sx={{ minHeight: "72px", px: { xs: 2, md: 4 } }}>
+        <Toolbar sx={{ minHeight: { xs: "45px", md: "72px" }, px: { xs: 2, md: 4 } }}>
           <Box sx={{ display: { xs: "flex", sm: "none" }, mr: 1 }}>
             <IconButton
               onClick={() => setIsMenuOpen((open) => !open)}

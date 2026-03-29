@@ -19,14 +19,15 @@ export default function LoginForm() {
 
       <div className="w-full space-y-8 md:px-24 flex flex-col items-start">
         <CampaignSection />
-
-        {/* Responsive text size */}
-        <h2 className="font-orbitron text-2xl md:text-4xl font-extrabold text-gray-800">
+                {/* Responsive text size */}
+        <h2 className="px-4 md:px-0 font-orbitron text-2xl md:text-4xl font-extrabold text-gray-800">
           Empowering Events with Compassion
         </h2>
         <ParagraphSection />
 
         <EmpowerSection />
+
+
       </div>
     </div>
   );
