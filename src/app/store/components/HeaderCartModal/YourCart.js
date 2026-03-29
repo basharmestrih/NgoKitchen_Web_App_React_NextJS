@@ -110,7 +110,7 @@ export default function YourCart({
                     </div>
                   </div>
                 ) : (
-                  <div className="space-y-4 lg:px-16">
+                  <div className="space-y-4">
                     {cart.map((item, index) => (
                       <div
                         key={`${item.title}-${index}`}
